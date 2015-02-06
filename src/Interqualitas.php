@@ -1,7 +1,7 @@
 <?php
 
-require_once '../vendor/autoload.php';
-require_once './Interqualitas/PolicyHolder.php';
+require_once 'vendor/autoload.php';
+require_once 'Interqualitas/PolicyHolder.php';
 
 use Httpful\Request;
 use Httpful\Response;
