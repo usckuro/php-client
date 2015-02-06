@@ -11,5 +11,9 @@
     "require": {
         "php": ">=5.4",
         "nategood/httpful": "dev-master"
+    },"autoload": {
+        "psr-0": {
+            "Interqualitas": "src/"
+        }
     }
 }
