@@ -1,7 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
 use Httpful\Request;
-use Httpful\Response;
 
 /**
  * The base API class for the Interqualitas API Wrapper
@@ -44,6 +44,7 @@ class Interqualitas {
         $this->authCode = $authCode;
         $this->clientSecret = $clientSecret;
         $this->endPoint = $endPoint;
+        $this->authenticate();
     }
     
     /**
@@ -51,12 +52,14 @@ class Interqualitas {
      */
     public function authenticate() {
         $request = Request::post($this->endPoint . '/oauth', 
-            [
+            json_encode([
                 'redirect_uri'  => '/oauth/receivecode',
                 'client_id'     => $this->username,
                 'client_secret' => $this->clientSecret,
                 'code'          => $this->authCode,
                 'grant_type'    => 'authorization_code'
-            ]);
+            ]));
+        $response = $request->send();
+        print_r($response);
     }
 }
