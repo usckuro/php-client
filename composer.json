@@ -1,7 +1,5 @@
 {
     "name": "interqualitas/php-wrapper",
-    "type": "vcs",
-    "version": "0.0",
     "description": "API client library for the Interqualitas API",
     "keywords": ["api","interqualitas","qualitas"],
     "homepage": "https://github.com/interqualitas/php-wrapper",
