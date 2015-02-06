@@ -34,3 +34,5 @@
 vendor
 config/autoload/local.php
 nbproject/
+composer.phar
+composer.lock

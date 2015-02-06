@@ -1,7 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once '../vendor/autoload.php';
+require_once './Interqualitas/PolicyHolder.php';
+
 use Httpful\Request;
+use Httpful\Response;
 
 /**
  * The base API class for the Interqualitas API Wrapper
@@ -15,11 +18,6 @@ class Interqualitas {
      */
     protected $username;
     
-    /**
-     *
-     * @var string $authCode The auth code provided by interqualitas
-     */
-    protected $authCode;
     
     /**
      *
@@ -33,15 +31,18 @@ class Interqualitas {
      */
     protected $endPoint;
     
+    protected $tokenTimeStamp;
+    
+    protected $tokenLifeSpan = 3600;
+    
     /**
      *
      * @var string $token The token provided for this session
      */
     private $token;
     
-    public function __construct($username, $authCode, $clientSecret, $endPoint = 'https://interqualitas.net') {
+    public function __construct($username, $clientSecret, $endPoint = 'https://interqualitas.net') {
         $this->username = $username;
-        $this->authCode = $authCode;
         $this->clientSecret = $clientSecret;
         $this->endPoint = $endPoint;
         $this->authenticate();
@@ -51,15 +52,39 @@ class Interqualitas {
      * 
      */
     public function authenticate() {
-        $request = Request::post($this->endPoint . '/oauth', 
-            json_encode([
-                'redirect_uri'  => '/oauth/receivecode',
-                'client_id'     => $this->username,
-                'client_secret' => $this->clientSecret,
-                'code'          => $this->authCode,
-                'grant_type'    => 'authorization_code'
-            ]));
+        $request = Request::post($this->endPoint . '/oauth')
+            ->authenticateWithBasic($this->username, $this->clientSecret)
+            ->body(json_encode([
+                'username'      => $this->username,
+                'password'      => $this->clientSecret,
+                'grant_type'    =>'client_credentials']))
+            ->sendsJson();
+        
         $response = $request->send();
-        print_r($response);
+        if($response->code === 200) {
+            $body = $response->body;
+            if(isset($body->access_token)){
+                $this->token = $body->access_token;
+                $this->tokenLifeSpan = $body->expires_in;
+                $this->tokenTimeStamp = time();
+                print_r($this->toArray());
+            }
+            else {
+                print_r($body);
+            }
+        }
+        else {
+            print_r($response);
+        }
+        
+        $this->policyHolder = new \Interqualitas\PolicyHolder();
+    }
+    
+    public function toArray() {
+        return [
+            'token'     => $this->token,
+            'lifeSpan'  => $this->tokenLifeSpan,
+            'timestamp' => $this->tokenTimeStamp
+        ];
     }
 }

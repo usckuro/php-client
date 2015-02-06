@@ -9,6 +9,7 @@
     "authors": [{"name": "Jon Wadsworth", "email": "jon@interqualitas.com", "role": "Developer"},
 		{"name": "Roberto Florez", "email": "roberto@interqualitas.com", "role": "Developer"}],
     "require": {
+        "php": ">=5.4",
         "nategood/httpful": "dev-master"
     }
 }
