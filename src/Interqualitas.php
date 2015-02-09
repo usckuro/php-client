@@ -12,6 +12,12 @@ use Httpful\Response;
  */
 class Interqualitas {
     
+    //HTTP Method Constants
+    const METHOD_GET    = 1;
+    const METHOD_POST   = 2;
+    const METHOD_PATCH  = 3;
+    const METHOD_DELETE = 4;
+    
     /**
      *
      * @var string $username The username to be used to connect to the API
@@ -48,6 +54,43 @@ class Interqualitas {
         $this->authenticate();
     }
     
+    public function makeCall($modulePath, $id = '', $params = [], $method = self::METHOD_GET) {
+        $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):''). '?access_token=' . $this->token;
+        
+        //Setup Request Object
+        switch ($method) {
+            case self::METHOD_GET:
+                $request = Request::get($uri)->sendsJson();
+                break;
+            case self::METHOD_POST:
+                $request = Request::post($uri)->sendsJson();
+                break;
+            case self::METHOD_PATCH:
+                $request = Request::patch($uri)->sendsJson();
+            default:
+                $request = Request::get($uri)->sendsJson();
+                break;
+        }
+        
+        $request->expectsJson();
+        //Handle Data
+        if($method == self::METHOD_GET && count($params)>0) {
+            $request->uri .= '/' . http_build_query($params);
+        }
+        else {
+            $request->body(json_encode($params));
+        }
+                
+        $response = $request->send();
+        if($response->code == 200) {
+            print_r($response->body);
+        }
+        else {
+            print_r($response);
+        }
+        
+    }
+    
     /**
      * 
      */
@@ -76,8 +119,6 @@ class Interqualitas {
         else {
             print_r($response);
         }
-        
-        $this->policyHolder = new \Interqualitas\PolicyHolder();
     }
     
     public function toArray() {
