@@ -18,6 +18,9 @@ class Interqualitas {
     const METHOD_PATCH  = 3;
     const METHOD_DELETE = 4;
     
+    const PRODUCTION    = 'https://www.interqualitas.net';
+    const SANDBOX       = 'https://sandbox.interqualitas.net';
+    
     /**
      *
      * @var string $username The username to be used to connect to the API
@@ -47,7 +50,9 @@ class Interqualitas {
      */
     private $token;
     
-    public function __construct($username, $clientSecret, $endPoint = 'https://interqualitas.net') {
+    private $authenticationMessage = '';
+    
+    public function __construct($username, $clientSecret, $endPoint = self::SANDBOX) {
         $this->username = $username;
         $this->clientSecret = $clientSecret;
         $this->endPoint = $endPoint;
@@ -98,6 +103,7 @@ class Interqualitas {
      * 
      */
     public function authenticate() {
+        //Forming authentication request
         $request = Request::post($this->endPoint . '/oauth')
             ->authenticateWithBasic($this->username, $this->clientSecret)
             ->body(json_encode([
@@ -107,21 +113,29 @@ class Interqualitas {
             ->sendsJson();
         
         $response = $request->send();
+        
+        //Digesting request
         if($response->code === 200) {
             $body = $response->body;
             if(isset($body->access_token)){
                 $this->token = $body->access_token;
                 $this->tokenLifeSpan = $body->expires_in;
                 $this->tokenTimeStamp = time();
-                print_r($this->toArray());
+                return true;
             }
             else {
-                print_r($body);
+                $this->authenticationMessage = $response->body;
+                return false;
             }
         }
         else {
-            print_r($response);
+                $this->authenticationMessage = $response->body;
+                return false;
         }
+    }
+    
+    public function getAuthenticationMessage() {
+        return $this->authenticationMessage;
     }
     
     public function toArray() {
