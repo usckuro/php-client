@@ -55,7 +55,7 @@ class Interqualitas {
     }
     
     public function makeCall($modulePath, $id = '', $params = [], $method = self::METHOD_GET) {
-        $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):''). '?access_token=' . $this->token;
+        $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):'');
         
         //Setup Request Object
         switch ($method) {
@@ -74,10 +74,13 @@ class Interqualitas {
         
         $request->expectsJson();
         //Handle Data
-        if($method == self::METHOD_GET && count($params)>0) {
-            $request->uri .= '/' . http_build_query($params);
+        if($method == self::METHOD_GET) {
+            $params['access_token'] = $this->token;
+            $request->uri .= '?' . http_build_query($params);
+            echo $request->uri;
         }
         else {
+            $request->uri .= '?access_token=' . $this->token;
             $request->body(json_encode($params));
         }
                 
