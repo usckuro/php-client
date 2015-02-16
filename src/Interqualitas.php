@@ -82,7 +82,6 @@ class Interqualitas {
         if($method == self::METHOD_GET) {
             $params['access_token'] = $this->token;
             $request->uri .= '?' . http_build_query($params);
-            echo $request->uri;
         }
         else {
             $request->uri .= '?access_token=' . $this->token;
@@ -90,13 +89,7 @@ class Interqualitas {
         }
                 
         $response = $request->send();
-        if($response->code == 200) {
-            print_r($response->body);
-        }
-        else {
-            print_r($response);
-        }
-        
+        return $response->body;
     }
     
     /**
@@ -129,8 +122,7 @@ class Interqualitas {
             }
         }
         else {
-                $this->authenticationMessage = $response->body;
-                return false;
+                throw new \Interqualitas\Exception\AuthenticationFailed($response->body->detail);
         }
     }
     
