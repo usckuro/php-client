@@ -72,6 +72,7 @@ class Interqualitas {
                 break;
             case self::METHOD_PATCH:
                 $request = Request::patch($uri)->sendsJson();
+                break;
             case self::METHOD_DELETE:
                 $request = Request::delete($uri)->sendsJson();
                 break;
