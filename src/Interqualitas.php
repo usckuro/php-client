@@ -72,6 +72,9 @@ class Interqualitas {
                 break;
             case self::METHOD_PATCH:
                 $request = Request::patch($uri)->sendsJson();
+            case self::METHOD_DELETE:
+                $request = Request::delete($uri)->sendsJson();
+                break;
             default:
                 $request = Request::get($uri)->sendsJson();
                 break;
@@ -79,7 +82,7 @@ class Interqualitas {
         
         $request->expectsJson();
         //Handle Data
-        if($method == self::METHOD_GET) {
+        if($method == self::METHOD_GET || $method == self::METHOD_DELETE) {
             $params['access_token'] = $this->token;
             $request->uri .= '?' . http_build_query($params);
         }
@@ -89,7 +92,12 @@ class Interqualitas {
         }
                 
         $response = $request->send();
-        return $response->body;
+        if(isset($response->body)) { 
+            return $response->body;
+        }
+        else {
+            return $response->code;
+        }
     }
     
     /**

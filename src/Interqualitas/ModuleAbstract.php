@@ -32,7 +32,7 @@ abstract class ModuleAbstract {
     }
     
     public function delete($id, $params = []) {
-        return $this->main->makeCall($this->modulePath, '', $data, Interqualitas::METHOD_DELETE);
+        return $this->main->makeCall($this->modulePath, $id, $params, Interqualitas::METHOD_DELETE);
     }
     
     public function __construct(\Interqualitas $main) {
