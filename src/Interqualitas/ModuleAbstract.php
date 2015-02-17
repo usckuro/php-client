@@ -27,8 +27,8 @@ abstract class ModuleAbstract {
         return $this->main->makeCall($this->modulePath, '', $data, Interqualitas::METHOD_POST);
     }
     
-    public function update($data) {
-        return $this->main->makeCall($this->modulePath, '', $data, Interqualitas::METHOD_PATCH);
+    public function update($id, $data) {
+        return $this->main->makeCall($this->modulePath, $id, $data, Interqualitas::METHOD_PATCH);
     }
     
     public function delete($id, $params = []) {

@@ -40,8 +40,16 @@ class Interqualitas {
      */
     protected $endPoint;
     
+    /**
+     *
+     * @var integer $tokenTimeStamp The time stamp when the authentication was completed
+     */
     protected $tokenTimeStamp;
     
+    /**
+     *
+     * @var integer $tokenLifeSpan When the token will expire
+     */
     protected $tokenLifeSpan = 3600;
     
     /**
