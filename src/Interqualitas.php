@@ -100,13 +100,7 @@ class Interqualitas {
             $request->body(json_encode($params));
         }
                 
-        $response = $request->send();
-        if(isset($response->body)) { 
-            return $response->body;
-        }
-        else {
-            return $response->code;
-        }
+        return $request->send();
     }
     
     /**
