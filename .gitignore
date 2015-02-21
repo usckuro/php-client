@@ -31,6 +31,9 @@
 *.swp
 *.bak
 *.dump
+*.idea
+*.iml
+nbroject
 vendor
 config/autoload/local.php
 nbproject/
