@@ -1,7 +1,14 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+require_once 'Interqualitas/ModuleAbstract.php';
+
+require_once 'Interqualitas/Geo.php';
+require_once 'Interqualitas/Policy.php';
 require_once 'Interqualitas/PolicyHolder.php';
+require_once 'Interqualitas/Vehicle.php';
+require_once 'Interqualitas/VehicleValuation.php';
 
 use Httpful\Request;
 use Httpful\Response;
