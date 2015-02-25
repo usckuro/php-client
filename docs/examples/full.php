@@ -67,7 +67,7 @@ try {
     //Valuation
     $vehicleData = [
         'plateOrigin' => 'USA',
-        'VIN' => '1HGCT1B35EA008017'
+        'VIN' => '1HGCT1B35EA008018'
     ];
     $vehicleValuationApi = new \Interqualitas\VehicleValuation($iq);
     $result = $vehicleValuationApi->fetch(null, $vehicleData);
@@ -98,7 +98,7 @@ try {
         'type' => 1,
         'policyHolder' => $specificId,
         'vehicle' => $vehicleId,
-        'package' => 1,
+        'package' => 2,
         'status' => 2
     ];
     $policyResponse = $policyApi->create($policyData);
