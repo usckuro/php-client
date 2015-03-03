@@ -5,17 +5,48 @@ If you know how to handle installation and usage of composer modules you can ski
 
 Full documentation of the API is at dev.interqualitas.net
 
+#Requirements
+  * PHP >= 5.3
+  * PHP cURL extension
+
 #Instalation
 To install Interqualitas into your project we recommend composer.  You may download the zip but you will need to satisfy various dependency of which composer does automatically.
 
-##Composer
-Add the following code to your composer.json required section:
+##Install Composer
+If you are not already using [composer](http://getcomposer.org/) to manage your project dependencies, install composer.
+
+    curl -s http://getcomposer.org/installer | php
+
+##Configure composer.json
+If you don't already have a composer.json file in your projects root, create one with the following contents: 
+
+    {
+        "minimum-stability":"dev",
+        "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/interqualitas/php-wrapper.git"
+            }
+        ],
+        "require": {
+            "interqualitas/php-wrapper": "dev-master"
+        }
+    } 
+        
+If you do have a composer.json Add the following code to your composer.json required section:
 
     "interqualitas/php-wrapper": "master"
     
-or run this command from your projects root
+Also add the following repositories:
 
-    composer require
+    {
+        "type": "vcs",
+        "url": "https://github.com/interqualitas/php-wrapper.git"
+    }
+   
+After setting up your json file simply install the package using
+
+    php composer.phar install
     
 ##Usage
 A simple usage example is as follows:
