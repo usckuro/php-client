@@ -1,17 +1,32 @@
 {
     "name": "interqualitas/php-wrapper",
     "description": "API client library for the Interqualitas API",
-    "keywords": ["api","interqualitas","qualitas"],
+    "keywords": [
+        "api",
+        "interqualitas",
+        "qualitas"
+    ],
     "homepage": "https://github.com/interqualitas/php-wrapper",
-    "license": "Apache-2.0",
-    "authors": [{"name": "Jon Wadsworth", "email": "jon@interqualitas.com", "role": "Developer"},
-		{"name": "Roberto Florez", "email": "roberto@interqualitas.com", "role": "Developer"}],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jon Wadsworth",
+            "email": "jon@interqualitas.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Roberto Florez",
+            "email": "roberto@interqualitas.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.3",
         "nategood/httpful": "dev-master"
-    },"autoload": {
+    },
+    "autoload": {
         "psr-0": {
-            "Interqualitas": "src/"
+            "Interqualitas": "src"
         }
     }
 }
