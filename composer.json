@@ -1,5 +1,5 @@
 {
-    "name": "interqualitas/php-wrapper",
+    "name": "interqualitas/php-client",
     "description": "API client library for the Interqualitas API",
     "keywords": [
         "api",

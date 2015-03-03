@@ -1,23 +1,23 @@
-This wrapper provides access to the Interqualitas API.  It provides all functionality to the API through PHP.
+The Interqualitas PHP Client provides access to the Interqualitas API client and allows easy access to all functionality of the API.
 
-If you know how to handle installation and usage of composer modules you can skip the rest of this.  A quick example of the functions can be found under
+If you know how to handle installation and usage of composer modules, you can skip the rest of this.  A quick example of the functions can be found under
     docs/example/full
 
-Full documentation of the API is at dev.interqualitas.net
+Full documentation of the API is at the Interqualitas developer [website](http://dev.interqualitas.net)
 
-#Requirements
+##Requirements
   * PHP >= 5.3
   * PHP cURL extension
 
-#Instalation
-To install Interqualitas into your project we recommend composer.  You may download the zip but you will need to satisfy various dependency of which composer does automatically.
+##Instalation
+To install Interqualitas PHP Client into your project we recommend composer.  You may download the zip but you will need to satisfy various dependency of which composer does automatically.
 
-##Install Composer
+###Install Composer
 If you are not already using [composer](http://getcomposer.org/) to manage your project dependencies, install composer.
 
     curl -s http://getcomposer.org/installer | php
 
-##Configure composer.json
+###Configure composer.json
 If you don't already have a composer.json file in your projects root, create one with the following contents: 
 
     {
@@ -25,30 +25,30 @@ If you don't already have a composer.json file in your projects root, create one
         "repositories": [
             {
                 "type": "vcs",
-                "url": "https://github.com/interqualitas/php-wrapper.git"
+                "url": "https://github.com/interqualitas/php-client.git"
             }
         ],
         "require": {
-            "interqualitas/php-wrapper": "dev-master"
+            "interqualitas/php-client": "dev-master"
         }
     } 
         
-If you do have a composer.json Add the following code to your composer.json required section:
+If you do have a composer.json, add the following code to your composer.json required section:
 
-    "interqualitas/php-wrapper": "master"
+    "interqualitas/php-client": "master"
     
-Also add the following repositories:
+Also, add the following repositories:
 
     {
         "type": "vcs",
-        "url": "https://github.com/interqualitas/php-wrapper.git"
+        "url": "https://github.com/interqualitas/php-client.git"
     }
    
 After setting up your json file simply install the package using
 
     php composer.phar install
     
-##Usage
+###Usage
 A simple usage example is as follows:
 
     <?php
