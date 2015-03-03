@@ -15,7 +15,9 @@ require_once 'Interqualitas/ModuleAbstract.php';
 require_once 'Interqualitas/Geo.php';
 require_once 'Interqualitas/Policy.php';
 require_once 'Interqualitas/PolicyHolder.php';
+require_once 'Interqualitas/PolicyPackage.php';
 require_once 'Interqualitas/Vehicle.php';
+require_once 'Interqualitas/VehicleMake.php';
 require_once 'Interqualitas/VehicleValuation.php';
 
 use Httpful\Request;
