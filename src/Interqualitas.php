@@ -119,6 +119,25 @@ class Interqualitas {
                 
         return $request->send();
     }
+
+    /**
+     *
+     * Calls the provided url after adding authentication information
+     * @param $url The direct URL to call
+     * @return mixed
+     */
+    public function makeRawCall($url) {
+        if(strpos($url, '?') !== false){
+            $url .= '&access_token=' . $this->token;
+        }
+        else {
+            $url .= '?access_token=' . $this->token;
+        }
+        return Request::get($url)
+            ->sendsJson()
+            ->expectsJson()
+            ->send();
+    }
     
     /**
      * 
