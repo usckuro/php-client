@@ -34,7 +34,8 @@ class Interqualitas {
     const METHOD_POST   = 2;
     const METHOD_PATCH  = 3;
     const METHOD_DELETE = 4;
-    
+
+    //End point description
     const PRODUCTION    = 'https://www.interqualitas.net';
     const SANDBOX       = 'https://sandbox.interqualitas.net';
     
@@ -76,14 +77,31 @@ class Interqualitas {
     private $token;
     
     private $authenticationMessage = '';
-    
+
+    /**
+     *
+     * Instantiates a new Interqualitas object and authenticates with given credentials
+     * @param string $username The username of the accessing user
+     * @param string $clientSecret The given client credential
+     * @param string $endPoint The service endpoint either Interqualitas::SANDBOX|Interqualitas::PRODUCTION.  Sandbox is assumed
+     * @throws \Interqualitas\Exception\AuthenticationFailed
+     */
     public function __construct($username, $clientSecret, $endPoint = self::SANDBOX) {
         $this->username = $username;
         $this->clientSecret = $clientSecret;
         $this->endPoint = $endPoint;
         $this->authenticate();
     }
-    
+
+    /**
+     *
+     * Makes a call to the InterQualitas API Service
+     * @param string $modulePath The path for the module ie api/policy
+     * @param string $id The id to be used in a get transaction
+     * @param array  $params The params to be sent for the call
+     * @param int    $method The method to be used GET|POST|PATCH|DELETE
+     * @return mixed
+     */
     public function makeCall($modulePath, $id = '', $params = [], $method = self::METHOD_GET) {
         $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):'');
         
@@ -138,9 +156,12 @@ class Interqualitas {
             ->expectsJson()
             ->send();
     }
-    
+
     /**
-     * 
+     *
+     * Authenticates with the InterQualitas API Service
+     * @return bool
+     * @throws \Interqualitas\Exception\AuthenticationFailed
      */
     public function authenticate() {
         //Forming authentication request
