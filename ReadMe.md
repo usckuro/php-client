@@ -21,13 +21,6 @@ If you are not already using [composer](http://getcomposer.org/) to manage your 
 If you don't already have a composer.json file in your projects root, create one with the following contents: 
 
     {
-        "minimum-stability":"dev",
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/interqualitas/php-client.git"
-            }
-        ],
         "require": {
             "interqualitas/php-client": "dev-master"
         }
@@ -35,15 +28,8 @@ If you don't already have a composer.json file in your projects root, create one
         
 If you do have a composer.json, add the following code to your composer.json required section:
 
-    "interqualitas/php-client": "master"
+    "interqualitas/php-client": "dev-master"
     
-Also, add the following repositories:
-
-    {
-        "type": "vcs",
-        "url": "https://github.com/interqualitas/php-client.git"
-    }
-   
 After setting up your json file simply install the package using
 
     php composer.phar install
@@ -53,7 +39,7 @@ A simple usage example is as follows:
 
     <?php
         require_once 'vendor/autoload.php';
-        $iq = new Interqualitas('username', 'password);
+        $iq = new Interqualitas('username', 'api_key');
         $policyHolderApi = new Interqualitas\PolicyHolder($iq);
         
 For more advanced instructions look at the full example in docs/example/full.php

@@ -20,6 +20,8 @@ require_once 'Interqualitas/Vehicle.php';
 require_once 'Interqualitas/VehicleMake.php';
 require_once 'Interqualitas/VehicleValuation.php';
 
+require_once 'Interqualitas/Exception/AuthenticationFailed.php';
+
 use Httpful\Request;
 use Httpful\Response;
 
@@ -34,7 +36,8 @@ class Interqualitas {
     const METHOD_POST   = 2;
     const METHOD_PATCH  = 3;
     const METHOD_DELETE = 4;
-    
+
+    //Service Endpoint constants
     const PRODUCTION    = 'https://www.interqualitas.net';
     const SANDBOX       = 'https://sandbox.interqualitas.net';
     
@@ -74,16 +77,34 @@ class Interqualitas {
      * @var string $token The token provided for this session
      */
     private $token;
-    
+
+    /**
+     * @var string Stores any authentication message received from server
+     */
     private $authenticationMessage = '';
-    
+
+    /**
+     *
+     * Creates a new instance of this wrapper and attempts to authenticate with given credentials
+     * @param string    $username  The username given to client
+     * @param string    $clientSecret The client secret provided to client
+     * @param string    $endPoint The endpoint to use SANDBOX|PRODUCTION
+     * @throws \Interqualitas\Exception\AuthenticationFailed
+     */
     public function __construct($username, $clientSecret, $endPoint = self::SANDBOX) {
         $this->username = $username;
         $this->clientSecret = $clientSecret;
         $this->endPoint = $endPoint;
         $this->authenticate();
     }
-    
+
+    /**
+     * @param string $modulePath    The module path (generally provided by the API Class)
+     * @param string $id            The id for a get method
+     * @param array  $params        Any params that need to be added used for creating, editing, or filtering data
+     * @param int    $method        The HTTP method to be used
+     * @return mixed The result of the call
+     */
     public function makeCall($modulePath, $id = '', $params = [], $method = self::METHOD_GET) {
         $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):'');
         
@@ -121,7 +142,7 @@ class Interqualitas {
     }
     
     /**
-     * 
+     * Authenticates with the data given on construct
      */
     public function authenticate() {
         //Forming authentication request
@@ -153,11 +174,18 @@ class Interqualitas {
                 throw new \Interqualitas\Exception\AuthenticationFailed($response->body->detail);
         }
     }
-    
+
+    /**
+     * Gets the authentication method in case of failure
+     * @return string The authentication method
+     */
     public function getAuthenticationMessage() {
         return $this->authenticationMessage;
     }
-    
+
+    /**
+     * @return array The object returned as an array
+     */
     public function toArray() {
         return [
             'token'     => $this->token,
@@ -165,4 +193,41 @@ class Interqualitas {
             'timestamp' => $this->tokenTimeStamp
         ];
     }
+
+    /**
+     * @return string
+     */
+    public function getUsername() {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $clientSecret
+     */
+    public function setClientSecret($clientSecret) {
+        $this->clientSecret = $clientSecret;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndPoint() {
+        return $this->endPoint;
+    }
+
+    /**
+     * @param string $endPoint
+     */
+    public function setEndPoint($endPoint) {
+        $this->endPoint = $endPoint;
+    }
+
+
 }
