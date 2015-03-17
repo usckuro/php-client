@@ -1,5 +1,6 @@
 <?php
 
+//Autoloading
 $autoloadFiles = array(
     __DIR__ . '/../vendor/autoload.php',
     __DIR__ . '/../../../autoload.php');
@@ -10,8 +11,10 @@ foreach ($autoloadFiles as $autoloadFile) {
     }
 }
 
+//Abstracts
 require_once 'Interqualitas/ModuleAbstract.php';
 
+//End Points
 require_once 'Interqualitas/Geo.php';
 require_once 'Interqualitas/Policy.php';
 require_once 'Interqualitas/PolicyHolder.php';
@@ -20,58 +23,60 @@ require_once 'Interqualitas/Vehicle.php';
 require_once 'Interqualitas/VehicleMake.php';
 require_once 'Interqualitas/VehicleValuation.php';
 
+//Exception Classes
 require_once 'Interqualitas/Exception/AuthenticationFailed.php';
+
 
 use Httpful\Request;
 use Httpful\Response;
 
 /**
  * The base API class for the Interqualitas API Wrapper
+ *
  * @author Jon Wadsworth <jon@interqualitas.net>
  */
 class Interqualitas {
-    
+
     //HTTP Method Constants
-    const METHOD_GET    = 1;
-    const METHOD_POST   = 2;
-    const METHOD_PATCH  = 3;
+    const METHOD_GET = 1;
+    const METHOD_POST = 2;
+    const METHOD_PATCH = 3;
     const METHOD_DELETE = 4;
 
     //Service Endpoint constants
-    const PRODUCTION    = 'https://www.interqualitas.net';
-    const SANDBOX       = 'https://sandbox.interqualitas.net';
-    
+    const PRODUCTION = 'https://www.interqualitas.net';
+    const SANDBOX = 'https://sandbox.interqualitas.net';
+
     /**
      *
      * @var string $username The username to be used to connect to the API
      */
     protected $username;
-    
-    
+
     /**
      *
      * @var string $clientSecret The secret that was provided by the user
      */
     protected $clientSecret;
-    
+
     /**
      *
      * @var string $endPoint The base endpoint to be used for connections.
      */
     protected $endPoint;
-    
+
     /**
      *
      * @var integer $tokenTimeStamp The time stamp when the authentication was completed
      */
     protected $tokenTimeStamp;
-    
+
     /**
      *
      * @var integer $tokenLifeSpan When the token will expire
      */
     protected $tokenLifeSpan = 3600;
-    
+
     /**
      *
      * @var string $token The token provided for this session
@@ -86,9 +91,10 @@ class Interqualitas {
     /**
      *
      * Creates a new instance of this wrapper and attempts to authenticate with given credentials
-     * @param string    $username  The username given to client
-     * @param string    $clientSecret The client secret provided to client
-     * @param string    $endPoint The endpoint to use SANDBOX|PRODUCTION
+     *
+     * @param string $username The username given to client
+     * @param string $clientSecret The client secret provided to client
+     * @param string $endPoint The endpoint to use SANDBOX|PRODUCTION
      * @throws \Interqualitas\Exception\AuthenticationFailed
      */
     public function __construct($username, $clientSecret, $endPoint = self::SANDBOX) {
@@ -99,15 +105,14 @@ class Interqualitas {
     }
 
     /**
-     * @param string $modulePath    The module path (generally provided by the API Class)
-     * @param string $id            The id for a get method
-     * @param array  $params        Any params that need to be added used for creating, editing, or filtering data
-     * @param int    $method        The HTTP method to be used
+     * @param string $modulePath The module path (generally provided by the API Class)
+     * @param string $id The id for a get method
+     * @param array  $params Any params that need to be added used for creating, editing, or filtering data
+     * @param int    $method The HTTP method to be used
      * @return mixed The result of the call
      */
     public function makeCall($modulePath, $id = '', $params = [], $method = self::METHOD_GET) {
-        $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id))?('/' . $id):'');
-        
+        $uri = $this->endPoint . '/' . $modulePath . (!empty(trim($id)) ? ('/' . $id) : '');
         //Setup Request Object
         switch ($method) {
             case self::METHOD_GET:
@@ -126,10 +131,9 @@ class Interqualitas {
                 $request = Request::get($uri)->sendsJson();
                 break;
         }
-        
         $request->expectsJson();
         //Handle Data
-        if($method == self::METHOD_GET || $method == self::METHOD_DELETE) {
+        if ($method == self::METHOD_GET || $method == self::METHOD_DELETE) {
             $params['access_token'] = $this->token;
             $request->uri .= '?' . http_build_query($params);
         }
@@ -137,10 +141,9 @@ class Interqualitas {
             $request->uri .= '?access_token=' . $this->token;
             $request->body(json_encode($params));
         }
-                
         return $request->send();
     }
-    
+
     /**
      * Authenticates with the data given on construct
      */
@@ -149,17 +152,15 @@ class Interqualitas {
         $request = Request::post($this->endPoint . '/oauth')
             ->authenticateWithBasic($this->username, $this->clientSecret)
             ->body(json_encode([
-                'username'      => $this->username,
-                'password'      => $this->clientSecret,
-                'grant_type'    =>'client_credentials']))
+                'username'   => $this->username,
+                'password'   => $this->clientSecret,
+                'grant_type' => 'client_credentials']))
             ->sendsJson();
-        
         $response = $request->send();
-        
         //Digesting request
-        if($response->code === 200) {
+        if ($response->code === 200) {
             $body = $response->body;
-            if(isset($body->access_token)){
+            if (isset($body->access_token)) {
                 $this->token = $body->access_token;
                 $this->tokenLifeSpan = $body->expires_in;
                 $this->tokenTimeStamp = time();
@@ -171,12 +172,13 @@ class Interqualitas {
             }
         }
         else {
-                throw new \Interqualitas\Exception\AuthenticationFailed($response->body->detail);
+            throw new \Interqualitas\Exception\AuthenticationFailed($response->body->detail);
         }
     }
 
     /**
      * Gets the authentication method in case of failure
+     *
      * @return string The authentication method
      */
     public function getAuthenticationMessage() {
@@ -228,6 +230,4 @@ class Interqualitas {
     public function setEndPoint($endPoint) {
         $this->endPoint = $endPoint;
     }
-
-
 }
