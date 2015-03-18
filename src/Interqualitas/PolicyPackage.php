@@ -5,7 +5,7 @@ namespace Interqualitas;
 use Interqualitas\ModuleAbstract;
 
 /**
- * The API Calls to interact with policy holders
+ * The API Calls to interact with policy packages
  * @author Jon Wadsworth <jon@interqualitas.net>
  */
 class PolicyPackage extends ModuleAbstract{

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Interqualitas | API Documentation</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-Interqualitas.html">
+						Interqualitas<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Interqualitas.Exception.html">
+						Exception					</a>
+
+						</li>
+							</ul></li>
+				<li class="active">
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Interqualitas.html">Interqualitas</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Interqualitas</h1>
+
+
+	<div class="description">
+	<p>The base API class for the Interqualitas API Wrapper</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Jon Wadsworth <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#106;&#x6f;&#x6e;&#64;&#x69;&#x6e;&#116;&#101;&#x72;&#113;&#117;&#x61;&#x6c;&#105;&#x74;&#x61;&#115;&#46;&#x6e;&#101;&#116;">&#106;&#x6f;&#x6e;&#64;&#x69;&#x6e;&#116;&#101;&#x72;&#113;&#117;&#x61;&#x6c;&#105;&#x74;&#x61;&#115;&#46;&#x6e;&#101;&#116;</a><br>
+			<b>Located at</b> <a href="source-class-Interqualitas.html#33-237" title="Go to source code">Interqualitas.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Interqualitas.html#91-105" title="Go to source code">__construct</a>( <span>string <var>$username</var></span>, <span>string <var>$clientSecret</var></span>, <span>string <var>$endPoint</var> = <code><a href="class-Interqualitas.html#SANDBOX">Interqualitas::<b>SANDBOX</b></a></code></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a new instance of this wrapper and attempts to authenticate with given credentials</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd>The username given to client</dd>
+					<dt><var>$clientSecret</var></dt>
+					<dd>The client secret provided to client</dd>
+					<dt><var>$endPoint</var></dt>
+					<dd>The endpoint to use SANDBOX|PRODUCTION</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-Interqualitas.Exception.AuthenticationFailed.html">Interqualitas\Exception\AuthenticationFailed</a></code>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="makeCall" id="_makeCall">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_makeCall">#</a>
+		<code><a href="source-class-Interqualitas.html#107-148" title="Go to source code">makeCall</a>( <span>string <var>$modulePath</var></span>, <span>string <var>$id</var> = <span class="php-quote">''</span></span>, <span>array <var>$params</var> = []</span>, <span>integer <var>$method</var> = <code><a href="class-Interqualitas.html#METHOD_GET">Interqualitas::<b>METHOD_GET</b></a></code></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Makes a call to the API server and returns the response</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$modulePath</var></dt>
+					<dd>The module path (generally provided by the API Class)</dd>
+					<dt><var>$id</var></dt>
+					<dd>The id for a get method</dd>
+					<dt><var>$params</var></dt>
+					<dd>Any params that need to be added used for creating, editing, or filtering data</dd>
+					<dt><var>$method</var></dt>
+					<dd>The HTTP method to be used</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The result of the call
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="authenticate" id="_authenticate">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_authenticate">#</a>
+		<code><a href="source-class-Interqualitas.html#150-180" title="Go to source code">authenticate</a>( )</code>
+
+		<div class="description short">
+			<p>Authenticates with the data given on construct</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Authenticates with the data given on construct</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAuthenticationMessage" id="_getAuthenticationMessage">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAuthenticationMessage">#</a>
+		<code><a href="source-class-Interqualitas.html#182-189" title="Go to source code">getAuthenticationMessage</a>( )</code>
+
+		<div class="description short">
+			<p>Gets the authentication method in case of failure</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Gets the authentication method in case of failure</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The authentication method
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toArray" id="_toArray">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toArray">#</a>
+		<code><a href="source-class-Interqualitas.html#191-201" title="Go to source code">toArray</a>( )</code>
+
+		<div class="description short">
+			<p>Converts the object to an array</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts the object to an array</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The object returned as an array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUsername" id="_getUsername">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUsername">#</a>
+		<code><a href="source-class-Interqualitas.html#203-208" title="Go to source code">getUsername</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setUsername" id="_setUsername">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setUsername">#</a>
+		<code><a href="source-class-Interqualitas.html#210-215" title="Go to source code">setUsername</a>( <span>string <var>$username</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setClientSecret" id="_setClientSecret">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setClientSecret">#</a>
+		<code><a href="source-class-Interqualitas.html#217-222" title="Go to source code">setClientSecret</a>( <span>string <var>$clientSecret</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$clientSecret</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEndPoint" id="_getEndPoint">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEndPoint">#</a>
+		<code><a href="source-class-Interqualitas.html#224-229" title="Go to source code">getEndPoint</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setEndPoint" id="_setEndPoint">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setEndPoint">#</a>
+		<code><a href="source-class-Interqualitas.html#231-236" title="Go to source code">setEndPoint</a>( <span>string <var>$endPoint</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$endPoint</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="METHOD_GET" id="METHOD_GET">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#41" title="Go to source code"><b>METHOD_GET</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_GET" class="anchor">#</a>
+				<code><span class="php-num">1</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_POST" id="METHOD_POST">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#42" title="Go to source code"><b>METHOD_POST</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_POST" class="anchor">#</a>
+				<code><span class="php-num">2</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_PATCH" id="METHOD_PATCH">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#43" title="Go to source code"><b>METHOD_PATCH</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_PATCH" class="anchor">#</a>
+				<code><span class="php-num">3</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_DELETE" id="METHOD_DELETE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#44" title="Go to source code"><b>METHOD_DELETE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_DELETE" class="anchor">#</a>
+				<code><span class="php-num">4</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="PRODUCTION" id="PRODUCTION">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#47" title="Go to source code"><b>PRODUCTION</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#PRODUCTION" class="anchor">#</a>
+				<code><span class="php-quote">'https://www.interqualitas.net'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="SANDBOX" id="SANDBOX">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Interqualitas.html#48" title="Go to source code"><b>SANDBOX</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#SANDBOX" class="anchor">#</a>
+				<code><span class="php-quote">'https://sandbox.interqualitas.net'</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="username" id="$username">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Interqualitas.html#50-54" title="Go to source code"><var>$username</var></a>
+
+			<div class="description short">
+				<p>$username The username to be used to connect to the API</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$username The username to be used to connect to the API</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$username" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="clientSecret" id="$clientSecret">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Interqualitas.html#56-60" title="Go to source code"><var>$clientSecret</var></a>
+
+			<div class="description short">
+				<p>$clientSecret The secret that was provided by the user</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$clientSecret The secret that was provided by the user</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$clientSecret" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="endPoint" id="$endPoint">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Interqualitas.html#62-66" title="Go to source code"><var>$endPoint</var></a>
+
+			<div class="description short">
+				<p>$endPoint The base endpoint to be used for connections.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$endPoint The base endpoint to be used for connections.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$endPoint" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="tokenTimeStamp" id="$tokenTimeStamp">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Interqualitas.html#68-72" title="Go to source code"><var>$tokenTimeStamp</var></a>
+
+			<div class="description short">
+				<p>$tokenTimeStamp The time stamp when the authentication was completed</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$tokenTimeStamp The time stamp when the authentication was completed</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$tokenTimeStamp" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="tokenLifeSpan" id="$tokenLifeSpan">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Interqualitas.html#74-78" title="Go to source code"><var>$tokenLifeSpan</var></a>
+
+			<div class="description short">
+				<p>$tokenLifeSpan When the token will expire</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$tokenLifeSpan When the token will expire</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$tokenLifeSpan" class="anchor">#</a>
+				<code><span class="php-num">3600</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		API Documentation API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

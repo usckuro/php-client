@@ -105,6 +105,9 @@ class Interqualitas {
     }
 
     /**
+     *
+     * Makes a call to the API server and returns the response
+     *
      * @param string $modulePath The module path (generally provided by the API Class)
      * @param string $id The id for a get method
      * @param array  $params Any params that need to be added used for creating, editing, or filtering data
@@ -186,6 +189,7 @@ class Interqualitas {
     }
 
     /**
+     * Converts the object to an array
      * @return array The object returned as an array
      */
     public function toArray() {
