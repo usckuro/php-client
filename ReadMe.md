@@ -21,6 +21,7 @@ If you are not already using [composer](http://getcomposer.org/) to manage your 
 If you don't already have a composer.json file in your projects root, create one with the following contents: 
 
     {
+       "minimum-stability": "dev",
         "require": {
             "interqualitas/php-client": "dev-master"
         }
