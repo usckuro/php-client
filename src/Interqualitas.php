@@ -17,6 +17,7 @@ require_once 'Interqualitas/ModuleAbstract.php';
 //End Points
 require_once 'Interqualitas/Geo.php';
 require_once 'Interqualitas/Policy.php';
+require_once 'Interqualitas/PolicyFactorLevel.php';
 require_once 'Interqualitas/PolicyHolder.php';
 require_once 'Interqualitas/PolicyPackage.php';
 require_once 'Interqualitas/Vehicle.php';
@@ -45,7 +46,7 @@ class Interqualitas {
 
     //Service Endpoint constants
     const PRODUCTION = 'https://www.interqualitas.net';
-    const SANDBOX = 'https://sandbox.interqualitas.net';
+    const SANDBOX = 'http://sandbox.interqualitas.net';
 
     /**
      *
