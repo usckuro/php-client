@@ -5,7 +5,7 @@ namespace Interqualitas;
 use Interqualitas\ModuleAbstract;
 
 /**
- * The API Calls to interact with vehicle valuations
+ * The API Calls to interact with vehicle makes
  * @author Jon Wadsworth <jon@interqualitas.net>
  */
 class VehicleMake

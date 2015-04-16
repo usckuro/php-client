@@ -5,12 +5,12 @@ namespace Interqualitas;
 use Interqualitas\ModuleAbstract;
 
 /**
- * The API Calls to interact with policies
+ * The API Calls to interact with policy factor levels
  * @author Jon Wadsworth <jon@interqualitas.net>
  */
-class Policy extends ModuleAbstract{
+class PolicyFactorLevel extends ModuleAbstract{
     public function __construct(\Interqualitas $main) {
         parent::__construct($main);
-        $this->modulePath = 'api/policy';
+        $this->modulePath = 'api/policyfactorlevel';
     }
 }

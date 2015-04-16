@@ -6,7 +6,7 @@ try {
     //
     //Create new Interqualitas API Resource
     //
-    $iq = new Interqualitas('lmros', 'testpass', 'http://ira.local');
+    $iq = new Interqualitas('testuser', 'testpass');
 
     //
     //Policyholder Fetch functions
