@@ -142,6 +142,18 @@ class Interqualitas {
         return $request->send();
     }
 
+    public function rpcCall($modulePath, $params = [], $contextParams = null) {
+        $context = null;
+        if(!is_null($contextParams)) {
+            $context = stream_context_create($contextParams);
+        }
+        $url = $this->endPoint . '/' . $modulePath;
+        $params['access_token'] = $this->token;
+        $url .= '?' . http_build_query($params);
+        $response = file_get_contents($url, false, $context);
+        return $response;
+    }
+
     /**
      * Authenticates with the data given on construct
      */

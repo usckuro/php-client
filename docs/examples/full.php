@@ -50,7 +50,7 @@ try {
         'addressOne' => '123 49er Way',
         'textCity' => 'San Francisco',
         'state' => 'CA',
-        'postalCode' => '92132'
+        'postalCode' => '92132',
     ];
 
     $result = $policyHolderApi->create($data);
@@ -85,6 +85,7 @@ try {
         $vehicleData['plate'] = 'FDS432';
         $vehicleData['state'] = 'CA';
         $vehicleData['usage'] = 1;
+        $vehicleData['make'] = 18;
         $vehicleApi = new \Interqualitas\Vehicle($iq);
         $rest = $vehicleApi->create($vehicleData);
         $vehicleId = $rest->body->id;
@@ -98,15 +99,14 @@ try {
         'type' => 1,
         'policyHolder' => $specificId,
         'vehicle' => $vehicleId,
-        'package' => 2,
-        'status' => 2
+        'package' => 'mxtourrc',
+        'status' => 2,
+        'package'
     ];
     $policyResponse = $policyApi->create($policyData);
     $policyId = $policyResponse->body->id;
-
-    $policyApi->delete($policyId);
-    $policyHolderApi->delete($specificId);
-    $vehicleApi->delete($vehicleId);
+    $document = $policyResponse->body->policyFileID;
+    $document = $policyApi->getDocument($document);
 } catch (\Interqualitas\Exception\AuthenticationFailed $exc) {
     echo $exc->getMessage();
     echo $exc->getTraceAsString();
